@@ -5,11 +5,11 @@ const Herosection = () => {
 
     return (
         <>
-            <section className="min-h-screen overflow-hidden flex justify-center items-center  bg-[#B1B2FF] dark:bg-[#222831] dark:text-white px-4 sm:px-6 lg:px-8">
+            <section id='home' className="min-h-screen overflow-hidden flex justify-center items-center  bg-[#B1B2FF] dark:bg-[#222831] dark:text-white px-4 sm:px-6 lg:px-8">
                 <main className="flex-1 h-[calc(100dvh_-_170px)] sm:h-[calc(100dvh_-_70px)] flex flex-col items-center justify-between">
                     <div className='flex-1 w-full flex flex-col gap-3 justify-center items-center text-center '>
-                        <h1 className='text-4xl font-semibold'>Hi, I am Rahul</h1>
-                        <p className='text-lg text-balance mt-2 sm:border rounded-full sm:py-3 sm:px-4 sm:shadow'> Web Developer skilled in HTML, CSS, JavaScript, React, Bootstrap, Tailwind CSS, and Shopify.</p>
+                        <h1 className='text-4xl md:text-6xl font-semibold'>Hi, I am Rahul</h1>
+                        <p className='text-lg md:text-xl text-balance mt-2 sm:border rounded-full sm:py-3 sm:px-4 sm:shadow'> Web Developer skilled in HTML, CSS, JavaScript, React, Bootstrap, Tailwind CSS, and Shopify.</p>
                     </div>
                     <div className='flex w-full items-center justify-center gap-4 py-4'>
                         <a href={resume} download="Rahul_Resume.pdf" className='flex flex-1 max-w-52 gap-2 items-center justify-center bg-green-400 dark:bg-green-700 rounded-full px-4 py-2 shadow-sm'>
@@ -29,7 +29,7 @@ const Herosection = () => {
                     <div className='grid grid-cols-1 md:grid-cols-3 items-start md:items-stretch gap-3'>
                         {
                             skills.map(skill => (
-                                <div key={skill.id} className={`rounded-lg shadow-md ${skill.color} dark:${skill.darkColor} py-4 px-6 flex gap-4 items-stretch justify-between`}>
+                                <div key={skill.id} className={`rounded-lg shadow-md text-white dark:text-[#222831] bg-[#222831] dark:bg-white py-4 px-6 flex gap-4 items-stretch justify-between`}>
                                     <div className="flex flex-col justify-between gap-2 text-balance">
                                         <p className='font-semibold'>{skill.name}</p>
                                         <p className='text-xs'>{skill.description}</p>
