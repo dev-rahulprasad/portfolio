@@ -1,0 +1,92 @@
+export const projects = [
+  {
+    id: 1,
+    brand: 'HOK Makeup',
+    brandLogo: 'https://logo.clearbit.com/hokmakeup.com',
+    name: 'HOK Makeup Store Revamp',
+    technology: 'Shopify',
+    url: 'https://www.hokmakeup.com',
+    role: 'Shopify Developer',
+    shortDescription:
+      'Redesigned product and collection experience with conversion-focused layout updates.',
+    responsibilities: [
+      'Converted Figma design system into responsive Shopify sections.',
+      'Optimized product templates for clearer pricing, variant flow, and trust badges.',
+      'Improved collection page filters and sorting using Liquid and JavaScript.',
+      'Reduced layout shift issues and improved mobile UX for checkout journey.',
+      'Coordinated with design and marketing to ship weekly campaign updates.',
+      'Maintained app compatibility while refactoring legacy section code.',
+    ],
+  },
+  {
+    id: 2,
+    brand: 'Kaja',
+    brandLogo: 'https://logo.clearbit.com/kaja.in',
+    name: 'D2C Beauty Landing Suite',
+    technology: 'Shopify',
+    url: 'https://www.kaja.in',
+    role: 'Frontend Shopify Developer',
+    shortDescription:
+      'Built campaign landing pages and reusable section blocks for product launches.',
+    responsibilities: [
+      'Created reusable Liquid sections for hero, bundles, testimonials, and FAQ.',
+      'Implemented smooth scroll animations and visual transitions across pages.',
+      'Handled pixel-perfect implementation from Figma to Shopify theme.',
+      'Built dynamic metafield-based content areas for marketing team self-service.',
+      'Enhanced page speed by compressing assets and reducing third-party overhead.',
+    ],
+  },
+  {
+    id: 3,
+    brand: 'Bella Vita Organic',
+    brandLogo: 'https://logo.clearbit.com/bellavitaorganic.com',
+    name: 'Luxury Cosmetics International Store',
+    technology: 'Shopify',
+    url: 'https://www.bellavitaorganic.com',
+    role: 'Shopify Theme Developer',
+    shortDescription:
+      'Developed a scalable, multilingual storefront layout for global traffic.',
+    responsibilities: [
+      'Implemented region-specific announcement bars and promotional banners.',
+      'Built modular PDP blocks to support multiple product storytelling styles.',
+      'Integrated custom JavaScript for sticky add-to-cart and variant interactions.',
+      'Collaborated in remote team with Git-based workflow and code reviews.',
+      'Delivered consistent responsive behavior across all major breakpoints.',
+    ],
+  },
+  {
+    id: 4,
+    brand: 'Dot & Key',
+    brandLogo: 'https://logo.clearbit.com/dotandkey.com',
+    name: 'Skincare Routine Builder',
+    technology: 'Shopify',
+    url: 'https://www.dotandkey.com',
+    role: 'Shopify Developer',
+    shortDescription:
+      'Implemented guided routine sections and content-first product storytelling.',
+    responsibilities: [
+      'Built guided routine component blocks in Liquid with theme settings.',
+      'Improved section architecture for easy content editing by non-technical users.',
+      'Created reusable snippets for product highlights and social proof.',
+      'Refined typography and spacing system for premium visual consistency.',
+    ],
+  },
+  {
+    id: 5,
+    brand: 'The Man Company',
+    brandLogo: 'https://logo.clearbit.com/themancompany.com',
+    name: 'Wellness E-commerce Upgrade',
+    technology: 'Shopify',
+    url: 'https://www.themancompany.com',
+    role: 'Shopify Frontend Engineer',
+    shortDescription:
+      'Enhanced storefront performance and implemented modern, mobile-first sections.',
+    responsibilities: [
+      'Delivered responsive redesign for homepage, collections, and PDP templates.',
+      'Created reusable promo card components and trust element blocks.',
+      'Implemented custom JS interactions with accessibility-friendly behavior.',
+      'Worked with QA to resolve cross-browser and mobile edge cases.',
+      'Prepared codebase for future Shopify app integrations.',
+    ],
+  },
+]
