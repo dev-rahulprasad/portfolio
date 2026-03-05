@@ -1,11 +1,15 @@
 import Projects from '../components/projects/Projects'
+import { onSpaLinkClick } from '../utils/navigation'
+
+const HOME_PATH = `${import.meta.env.BASE_URL}#hero`
 
 function ProjectsPage({ projects }) {
   return (
     <section className="space-y-8 sm:space-y-10">
       <div className="space-y-3.5">
         <a
-          href="#hero"
+          href={HOME_PATH}
+          onClick={(event) => onSpaLinkClick(event, HOME_PATH)}
           className="inline-flex rounded-full bg-slate-100 px-3.5 py-1.5 text-xs font-semibold transition hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700"
         >
           Back to Home

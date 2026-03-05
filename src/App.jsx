@@ -7,24 +7,27 @@ import Home from './pages/Home'
 import ProjectsPage from './pages/Projects'
 import { projects } from './data/projects'
 
-function getInitialRoute() {
-  if (!window.location.hash || window.location.hash === '#') {
-    window.location.hash = '#/'
-  }
-  return window.location.hash
+const BASE_PATH = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL.slice(0, -1)
+  : import.meta.env.BASE_URL
+const PROJECTS_PATH = `${BASE_PATH}/projects`
+
+function getRouteFromPath(pathname) {
+  const normalized = pathname.endsWith('/') && pathname !== '/' ? pathname.slice(0, -1) : pathname
+  return normalized === PROJECTS_PATH ? 'projects' : 'home'
 }
 
 function App() {
-  const [route, setRoute] = useState(getInitialRoute)
+  const [route, setRoute] = useState(() => getRouteFromPath(window.location.pathname))
   const [isDark, setIsDark] = useState(() => {
     const saved = localStorage.getItem('theme')
     return saved ? saved === 'dark' : true
   })
 
   useEffect(() => {
-    const onHashChange = () => setRoute(window.location.hash || '#/')
-    window.addEventListener('hashchange', onHashChange)
-    return () => window.removeEventListener('hashchange', onHashChange)
+    const onLocationChange = () => setRoute(getRouteFromPath(window.location.pathname))
+    window.addEventListener('popstate', onLocationChange)
+    return () => window.removeEventListener('popstate', onLocationChange)
   }, [])
 
   useEffect(() => {
@@ -33,11 +36,25 @@ function App() {
   }, [isDark])
 
   const featuredProjects = useMemo(() => projects.slice(0, 3), [])
-  const isProjectsPage = route === '#/projects'
+  const isProjectsPage = route === 'projects'
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }, [isProjectsPage])
+    if (isProjectsPage) {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+      return
+    }
+
+    const sectionId = window.location.hash.replace('#', '')
+    if (!sectionId) {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+      return
+    }
+
+    requestAnimationFrame(() => {
+      const section = document.getElementById(sectionId)
+      section?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    })
+  }, [route, isProjectsPage])
 
   useEffect(() => {
     document.title = isProjectsPage

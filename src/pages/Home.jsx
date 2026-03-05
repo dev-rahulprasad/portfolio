@@ -6,6 +6,9 @@ import ProjectCard from '../components/projects/ProjectCard'
 import Timeline from '../components/timeline/Timeline'
 import { education } from '../data/education'
 import { experience } from '../data/experience'
+import { onSpaLinkClick } from '../utils/navigation'
+
+const PROJECTS_PATH = `${import.meta.env.BASE_URL}projects`
 
 function Home({ featuredProjects }) {
   return (
@@ -28,7 +31,8 @@ function Home({ featuredProjects }) {
             </p>
           </div>
           <a
-            href="#/projects"
+            href={PROJECTS_PATH}
+            onClick={(event) => onSpaLinkClick(event, PROJECTS_PATH)}
             className="text-sm font-semibold text-emerald-600 transition hover:text-emerald-500 dark:text-emerald-400"
           >
             View all

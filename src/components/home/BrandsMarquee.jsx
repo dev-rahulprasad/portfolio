@@ -6,13 +6,13 @@ function BrandItem({ brand }) {
       href={brand.website}
       target="_blank"
       rel="noreferrer"
-      className="flex w-[190px] shrink-0 items-center justify-center rounded-xl border border-slate-200/90 bg-white px-4 py-3 shadow-sm dark:border-slate-800/90 dark:bg-slate-900"
+      className="flex h-[74px] w-[190px] shrink-0 items-center justify-center rounded-xl border border-slate-200/90 bg-white px-4 py-3 shadow-sm dark:border-slate-700/90 dark:bg-white"
     >
       <img
         src={brand.logo}
         alt={`${brand.name} logo`}
         loading="lazy"
-        className="h-9 w-auto object-contain"
+        className={`w-auto max-w-full object-contain ${brand.logoClassName || 'h-9'}`}
       />
     </a>
   )

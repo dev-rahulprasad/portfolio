@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import { onSpaLinkClick } from '../../utils/navigation'
 
 const navItems = [
   { id: 'hero', label: 'Home' },
@@ -53,18 +54,25 @@ function GridIcon() {
   )
 }
 
+const HOME_PATH = import.meta.env.BASE_URL
+const BASE_PATH = HOME_PATH.endsWith('/') ? HOME_PATH.slice(0, -1) : HOME_PATH
+const PROJECTS_PATH = `${BASE_PATH}/projects`
+
 function BottomNav() {
   const [activeSection, setActiveSection] = useState('hero')
   const sectionIds = useMemo(() => navItems.map((item) => item.id), [])
 
   useEffect(() => {
-    const updateFromHash = () => {
-      const hash = window.location.hash
-      if (hash === '#/projects') {
+    const updateFromLocation = () => {
+      const normalizedPath = window.location.pathname.endsWith('/') && window.location.pathname !== '/'
+        ? window.location.pathname.slice(0, -1)
+        : window.location.pathname
+
+      if (normalizedPath === PROJECTS_PATH) {
         setActiveSection('all-projects')
         return
       }
-      const hashSection = hash.replace('#', '')
+      const hashSection = window.location.hash.replace('#', '')
       if (sectionIds.includes(hashSection)) {
         setActiveSection(hashSection)
       } else {
@@ -73,7 +81,11 @@ function BottomNav() {
     }
 
     const updateFromScroll = () => {
-      if (window.location.hash === '#/projects') {
+      const normalizedPath = window.location.pathname.endsWith('/') && window.location.pathname !== '/'
+        ? window.location.pathname.slice(0, -1)
+        : window.location.pathname
+
+      if (normalizedPath === PROJECTS_PATH) {
         setActiveSection('all-projects')
         return
       }
@@ -91,12 +103,14 @@ function BottomNav() {
       setActiveSection(current)
     }
 
-    updateFromHash()
-    window.addEventListener('hashchange', updateFromHash)
+    updateFromLocation()
+    window.addEventListener('hashchange', updateFromLocation)
+    window.addEventListener('popstate', updateFromLocation)
     window.addEventListener('scroll', updateFromScroll, { passive: true })
 
     return () => {
-      window.removeEventListener('hashchange', updateFromHash)
+      window.removeEventListener('hashchange', updateFromLocation)
+      window.removeEventListener('popstate', updateFromLocation)
       window.removeEventListener('scroll', updateFromScroll)
     }
   }, [sectionIds])
@@ -104,7 +118,8 @@ function BottomNav() {
   return (
     <nav className="fixed inset-x-0 bottom-0 z-50 flex w-full items-center justify-around border-t border-slate-200/80 bg-white/95 px-2 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] shadow-[0_-8px_24px_rgba(15,23,42,0.08)] backdrop-blur-xl lg:hidden dark:border-slate-700/80 dark:bg-slate-900/95">
       <a
-        href="#hero"
+        href={`${HOME_PATH}#hero`}
+        onClick={(event) => onSpaLinkClick(event, `${HOME_PATH}#hero`)}
         className={`inline-flex w-16 flex-col items-center justify-center gap-1 rounded-lg px-2 py-1 text-center text-[11px] font-semibold ${
           activeSection === 'hero' ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-600 dark:text-slate-300'
         }`}
@@ -113,7 +128,8 @@ function BottomNav() {
         Home
       </a>
       <a
-        href="#brands"
+        href={`${HOME_PATH}#brands`}
+        onClick={(event) => onSpaLinkClick(event, `${HOME_PATH}#brands`)}
         className={`inline-flex w-16 flex-col items-center justify-center gap-1 rounded-lg px-2 py-1 text-center text-[11px] font-semibold ${
           activeSection === 'brands' ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-600 dark:text-slate-300'
         }`}
@@ -122,7 +138,8 @@ function BottomNav() {
         Brands
       </a>
       <a
-        href="#featured-projects"
+        href={`${HOME_PATH}#featured-projects`}
+        onClick={(event) => onSpaLinkClick(event, `${HOME_PATH}#featured-projects`)}
         className={`inline-flex w-16 flex-col items-center justify-center gap-1 rounded-lg px-2 py-1 text-center text-[11px] font-semibold ${
           activeSection === 'featured-projects'
             ? 'text-emerald-600 dark:text-emerald-400'
@@ -133,7 +150,8 @@ function BottomNav() {
         Work
       </a>
       <a
-        href="#contact"
+        href={`${HOME_PATH}#contact`}
+        onClick={(event) => onSpaLinkClick(event, `${HOME_PATH}#contact`)}
         className={`inline-flex w-16 flex-col items-center justify-center gap-1 rounded-lg px-2 py-1 text-center text-[11px] font-semibold ${
           activeSection === 'contact' ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-600 dark:text-slate-300'
         }`}
@@ -142,7 +160,8 @@ function BottomNav() {
         Contact
       </a>
       <a
-        href="#/projects"
+        href={PROJECTS_PATH}
+        onClick={(event) => onSpaLinkClick(event, PROJECTS_PATH)}
         className={`inline-flex w-16 flex-col items-center justify-center gap-1 rounded-lg px-2 py-1 text-center text-[11px] font-semibold ${
           activeSection === 'all-projects'
             ? 'text-emerald-600 dark:text-emerald-400'
