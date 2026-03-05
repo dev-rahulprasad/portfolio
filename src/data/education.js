@@ -36,7 +36,7 @@ export const education = [
     title: 'Class 10th',
     institute: 'CBSE Board',
     period: 'Completed in 2016',
-    location: 'Faridabad, Hariyana',
+    location: 'Molarband, New Delhi',
     details: [
       'Completed secondary education from CBSE board in 2016.',
     ],
